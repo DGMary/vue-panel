@@ -1,41 +1,43 @@
 <template>
   <div class="orders-in-work">
-    <template v-if="inProgressCount > 0">
-      <OrdersInProgressList />
-    </template>
-    <template v-else>
+    <div v-if="data.inProgressCount > 0">
+      <OrdersInProgressList :ordersInProgress="data.ordersInProgress"  />
+    </div>
+    <div v-else>
       <OrdersEmpty />
-    </template>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import OrdersEmpty from "./OrdersEmpty";
 import OrdersInProgressList from "./OrdersInProgressList";
 
 export default {
   name: "OrdersInProgress",
-  data: () => ({
-    inProgressCount: null,
-  }),
+  props: {
+    data: {
+      type: Object,
+    }
+  },
   components: {
     OrdersEmpty,
     OrdersInProgressList,
   },
-  methods: {
-    async getOrdersInProgress() {
-      await axios
-        .get("../orders.json")
-        .then((response) => {
-          this.inProgressCount = response.data.results.length;
-          this.ordersNew = response.data.results;
-        })
-        .catch((error) => console.log(error));
-    },
-  },
-  mounted() {
-    this.getOrdersInProgress();
+  // methods: {
+  //   async getOrdersInProgress() {
+  //     await axios
+  //       .get("../orders.json")
+  //       .then((response) => {
+  //         this.inProgressCount = response.data.results.length;
+  //         this.ordersNew = response.data.results;
+  //       })
+  //       .catch((error) => console.log(error));
+  //   },
+  // },
+  updated() {
+    // this.getOrdersInProgress();
+    console.log(this.data);
   },
 };
 </script>
