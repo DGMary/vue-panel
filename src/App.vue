@@ -58,7 +58,7 @@ body {
 .bg-section {
   background: #f6f3f1;
 }
-/* Если это стиль кнопки (по сути должен быть он  если судить по названию) */
+/* Если это стиль кнопки (по сути должен быть он  если судить по названию) то почему тут display flex */
 .btn {
   border: none;
   cursor: pointer;
@@ -83,6 +83,7 @@ body {
   color: #b69b89;
   background: transparent;
 }
+
 .btn-block {
   width: 100%;
 }
