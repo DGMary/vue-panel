@@ -5,7 +5,7 @@
         <OrdersNew />
       </div>
       <div class="col">
-        <OrdersInProgress />
+        <OrdersInProgress :data="{inProgressCount, ordersInProgress}" />
       </div>
       <div class="col bg-section">
         <Order />
@@ -15,17 +15,35 @@
 </template>
 
 <script>
+import axios from "axios";
 import OrdersNew from "../components/ordersNew/OrdersNew.vue";
 import OrdersInProgress from "../components/ordersInProgress/OrdersInProgress.vue";
 import Order from "../components/orderDetail/Order.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      inProgressCount: 0,
+      ordersInProgress: []
+    }
+  },
   components: {
     OrdersNew,
     OrdersInProgress,
     Order,
   },
+  methods: {
+    updateOrdersInProgress() {
+      axios
+      .get("http://localhost:3000/results")
+      .then(response => this.inProgressCount = response.data.length)
+      .catch((error) => console.log(error.response));
+    }
+  },
+  created() {
+    this.updateOrdersInProgress()
+  }
 };
 </script>
 

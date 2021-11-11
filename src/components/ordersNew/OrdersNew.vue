@@ -53,24 +53,23 @@ export default {
     statusCount(statusName, id) {
       return statusName + id;
     },
-    async getOrdersNew() {
-      await axios
-        .get("../orders.json")
+    getOrdersNew() {
+      axios
+        .get("http://localhost:3000/results")
         .then((response) => {
-          this.newCount = response.data.results.length;
-          this.ordersNew = response.data.results;
-          console.log("response.data.results", response.data.results);
+          this.newCount = response.data.length;
+          this.ordersNew = response.data;
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.response));
     },
-    async getOrdersCanceled() {
-      await axios
-        .get("../orders.json")
+    getOrdersCanceled() {
+      axios
+        .get("http://localhost:3000/results")
         .then((response) => {
-          this.canceledCount = response.data.results.length;
-          this.ordersCanceled = response.data.results;
+          this.canceledCount = response.data.length;
+          this.ordersCanceled = response.data;
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error.response));
     },
   },
   mounted() {

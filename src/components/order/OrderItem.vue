@@ -24,7 +24,9 @@ export default {
   name: "OrderItem",
   data: () => ({}),
   props: {
-    order: Object,
+    order: {
+      type: Object
+    },
   },
   components: {
     OrderItemDetail,

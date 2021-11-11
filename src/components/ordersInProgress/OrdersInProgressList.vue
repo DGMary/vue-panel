@@ -11,10 +11,11 @@ import OrderList from "../order/OrderList.vue";
 
 export default {
   name: "OrdersInProgressList",
-  data: () => ({
-    ordersInProgressList: [],
-  }),
-  props: {},
+  props: {
+    ordersInProgressList: {
+      type: Array
+    }
+  },
   components: {
     OrderList,
   },
@@ -30,7 +31,7 @@ export default {
     },
   },
   mounted() {
-    this.getOrdersInProgress();
+    // this.getOrdersInProgress();
   },
 };
 </script>

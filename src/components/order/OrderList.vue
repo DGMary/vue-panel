@@ -24,8 +24,12 @@ export default {
     OrderItem,
   },
   props: {
-    orderListByStatus: Array,
-    orderId: Number,
+    orderListByStatus: {
+      type: Array
+    },
+    // orderId: {
+    //   type: Number
+    // },
   },
   methods: {
     clickActiveOrder(index, order) {
